@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [":semanticCommits"],
+  "packageRules": [
+    {
+      "groupName": "packages/maplibre",
+      "matchPackageNames": ["map*-gl"]
+    },
+    {
+      "groupName": "packages/solidjs",
+      "matchPackageNames": ["@solidjs/**","solid-**"]
+    },
+    {
+      "groupName": "packages/unocss",
+      "matchPackageNames": ["@iconify-json/**", "@unocss/**", "unocss**"]
+    }
+  ]
+}
