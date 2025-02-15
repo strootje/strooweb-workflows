@@ -6,6 +6,12 @@
       "groupName": "github/workflows",
       "matchManagers": ["github-actions"]
     },
+
+    {
+      "matchPackageNames": ["docker.io/clickhouse/clickhouse-server", "docker.io/postgres"],
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    
     {
       "groupName": "packages/maplibre",
       "matchPackageNames": ["map*-gl"]
