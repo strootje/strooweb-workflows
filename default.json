@@ -12,7 +12,7 @@
     },
     {
       "groupName": "packages/solidjs",
-      "matchPackageNames": ["@solidjs/**","solid-**"]
+      "matchPackageNames": ["@solid-**", "@solidjs/**","solid-**"]
     },
     {
       "groupName": "packages/unocss",
