@@ -1,6 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [":semanticCommits"],
+
   "packageRules": [
     {
       "description": "Disallow Major update to clickhouse and postgres",
@@ -32,6 +33,17 @@
       "groupName": "packages/unocss",
       "description": "Group all unocss packages into a single PR",
       "matchPackageNames": ["@iconify-json/**", "@unocss/**", "unocss**"]
+    }
+  ],
+
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["\\.yaml$"],
+      "datasourceTemplate": "helm",
+      "matchStrings": [
+        "kind:\\s*HelmChart\\s*\\n(?:.*\\n)*?\\s*chart:\\s*(?<depName>.*?)\\s*\\n(?:.*\\n)*?\\s*repo:\\s*(?<registryUrl>.*?)\\s*\\n(?:.*\\n)*?\\s*version:\\s*(?<currentValue>.*?)\\s*\\n"
+      ]
     }
   ]
 }
