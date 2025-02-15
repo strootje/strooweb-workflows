@@ -3,6 +3,10 @@
   "extends": [":semanticCommits"],
   "packageRules": [
     {
+      "groupName": "github/workflows",
+      "matchManagers": ["github-actions"]
+    },
+    {
       "groupName": "packages/maplibre",
       "matchPackageNames": ["map*-gl"]
     },
