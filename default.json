@@ -42,7 +42,7 @@
       "fileMatch": [".*y[a]?ml$"],
       "datasourceTemplate": "helm",
       "matchStrings": [
-        "kind:s*HelmChart\n[sw:-]*chart:s+(?<depName>.+)\n[sw:-]*s+(?<currentValue>v?[0-9.]+)\n[sw:-]*s+(?<registryUrl>https://.+)\n"
+        "kind:s*HelmChart\\n[sw:-]*chart:s+(?<depName>.+)\\n[sw:-]*s+(?<currentValue>v?[0-9.]+)\\n[sw:-]*s+(?<registryUrl>https://.+)\\n"
       ]
     }
   ]
