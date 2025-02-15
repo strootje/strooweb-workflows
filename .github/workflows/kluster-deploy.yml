@@ -1,0 +1,37 @@
+on:
+  workflow_call:
+    inputs:
+      KUBE_NAMESPACE: { required: true, type: string }
+    secrets:
+      KUBE_CERTIFICATE: { required: true }
+      KUBE_TOKEN: { required: true }
+      KUBE_HOST: { required: true }
+
+env:
+  FOLDER: ./namespaces/${{ inputs.KUBE_NAMESPACE }}/bootstrap/overlays/prd
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-hub/kubectl@v1.32.2
+        name: Deploy (DRY-RUN)
+        env:
+          NAMESPACE: ${{ inputs.KUBE_NAMESPACE }}
+          KUBE_HOST: ${{ secrets.KUBE_HOST }}
+          KUBE_CERTIFICATE: ${{ secrets.KUBE_CERTIFICATE }}
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        with:
+          args: -n ${{ env.NAMESPACE }} apply --dry-run="server" -k ${{ env.FOLDER }}
+      - uses: actions-hub/kubectl@v1.32.2
+        if: github.event_name != 'pull_request'
+        name: Deploy (APPLY)
+        env:
+          NAMESPACE: ${{ inputs.KUBE_NAMESPACE }}
+          KUBE_HOST: ${{ secrets.KUBE_HOST }}
+          KUBE_CERTIFICATE: ${{ secrets.KUBE_CERTIFICATE }}
+          KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+        with:
+          args: -n ${{ env.NAMESPACE }} apply -k ${{ env.FOLDER }}
