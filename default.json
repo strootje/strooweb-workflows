@@ -3,25 +3,34 @@
   "extends": [":semanticCommits"],
   "packageRules": [
     {
+      "description": "Disallow Major update to clickhouse and postgres",
+      "matchPackageNames": [
+        "docker.io/clickhouse/clickhouse-server",
+        "docker.io/postgres"
+      ],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+
+    {
       "groupName": "github/workflows",
+      "description": "Group all github actions into a single PR",
       "matchManagers": ["github-actions"]
     },
 
     {
-      "matchPackageNames": ["docker.io/clickhouse/clickhouse-server", "docker.io/postgres"],
-      "matchUpdateTypes": ["minor", "patch"]
-    },
-    
-    {
       "groupName": "packages/maplibre",
+      "description": "Group all maplibre packages into a single PR",
       "matchPackageNames": ["map*-gl"]
     },
     {
       "groupName": "packages/solidjs",
-      "matchPackageNames": ["@solid-**", "@solidjs/**","solid-**"]
+      "description": "Group all solid packages into a single PR",
+      "matchPackageNames": ["@solid-**", "@solidjs/**", "solid-**"]
     },
     {
       "groupName": "packages/unocss",
+      "description": "Group all unocss packages into a single PR",
       "matchPackageNames": ["@iconify-json/**", "@unocss/**", "unocss**"]
     }
   ]
