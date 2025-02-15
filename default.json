@@ -5,10 +5,7 @@
   "packageRules": [
     {
       "description": "Disallow Major update to clickhouse and postgres",
-      "matchPackageNames": [
-        "docker.io/clickhouse/clickhouse-server",
-        "docker.io/postgres"
-      ],
+      "matchPackageNames": ["docker.io/clickhouse/clickhouse-server", "docker.io/postgres"],
       "matchUpdateTypes": ["major"],
       "enabled": false
     },

@@ -2,7 +2,7 @@ on:
   workflow_call:
     secrets:
       RENOVATE_TOKEN: { required: true }
-  schedule: [{ cron: '30 2 * * *' }]
+  schedule: [{ cron: "30 2 * * *" }]
   workflow_dispatch: {}
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
       issues: read
       contents: read
       pull-requests: write
-      
+
     steps:
       - uses: actions/checkout@v4.2.2
       - uses: renovatebot/github-action@v41.0.13
