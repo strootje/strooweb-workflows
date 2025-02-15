@@ -1,0 +1,25 @@
+on:
+  workflow_call:
+    secrets:
+      RENOVATE_TOKEN: { required: true }
+  schedule: [{ cron: '30 2 * * *' }]
+  workflow_dispatch: {}
+
+jobs:
+  renovate:
+    runs-on: ubuntu-latest
+
+    permissions:
+      issues: read
+      contents: read
+      pull-requests: write
+      
+    steps:
+      - uses: actions/checkout@v4.2.2
+      - uses: renovatebot/github-action@v41.0.12
+        with:
+          token: ${{ secrets.RENOVATE_TOKEN }}
+        env:
+          RENOVATE_REPOSITORIES: ${{ github.repository }}
+          RENOVATE_ONBOARDING: false
+          RENOVATE_PLATFORM: github
