@@ -33,9 +33,9 @@ jobs:
         with:
           images: "${{ inputs.REGISTRY }}/${{ inputs.IMAGE_NAME }}"
           tags: |
+            type=sha,prefix=
             type=ref,prefix=pr-,event=pr
             type=raw,value=latest
-            type=sha,prefix=
         id: meta
       - uses: docker/build-push-action@v6.13.0
         id: build-and-push
