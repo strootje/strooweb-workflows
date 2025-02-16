@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      tags: ${{ steps.meta.outputs.tags }}
+      tagVersion: ${{ steps.meta.outputs.version }}
 
     permissions:
       contents: read
@@ -33,9 +33,9 @@ jobs:
         with:
           images: "${{ inputs.REGISTRY }}/${{ inputs.IMAGE_NAME }}"
           tags: |
-            type=sha,prefix=
-            type=ref,prefix=pr-,event=pr
-            type=raw,value=latest
+            type=ref,priority=900,prefix=pr-,event=pr
+            type=raw,priority=100,value=latest
+            type=sha,priority=500,prefix=
         id: meta
       - uses: docker/build-push-action@v6.13.0
         id: build-and-push
@@ -54,8 +54,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4.2.2
       - uses: imranismail/setup-kustomize@v2.1.0
-      - run: kustomize edit set image ${{ inputs.REGISTRY }}/${{ inputs.IMAGE_NAME }}=${{ needs.build.outputs.tags }}
-        name: Kustomize image tag=${{ needs.build.outputs.tags }}
+      - run: kustomize edit set image ${{ inputs.REGISTRY }}/${{ inputs.IMAGE_NAME }}=${{ needs.build.outputs.tagVersion }}
+        name: Kustomize image tag=${{ needs.build.outputs.tagVersion }}
         working-directory: .deployment/base
       - uses: actions-hub/kubectl@v1.32.2
         name: Deploy (DRY-RUN)
