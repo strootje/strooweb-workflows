@@ -9,6 +9,9 @@ on:
       KUBE_TOKEN: { required: true }
       KUBE_HOST: { required: true }
 
+env:
+  IMAGE_REG: "${{ inputs.REGISTRY }}/${{ inputs.IMAGE_NAME }}"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,7 +34,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker/metadata-action@v5.6.1
         with:
-          images: "${{ inputs.REGISTRY }}/${{ inputs.IMAGE_NAME }}"
+          images: "${{ env.IMAGE_REG }}"
           tags: |
             type=ref,priority=900,prefix=pr-,event=pr
             type=raw,priority=100,value=latest
@@ -54,7 +57,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4.2.2
       - uses: imranismail/setup-kustomize@v2.1.0
-      - run: kustomize edit set image ${{ inputs.REGISTRY }}/${{ inputs.IMAGE_NAME }}=${{ needs.build.outputs.tagVersion }}
+      - run: kustomize edit set image ${{ env.IMAGE_REG }}=${{ env.IMAGE_REG }}:${{ needs.build.outputs.tagVersion }}
         name: Kustomize image tag=${{ needs.build.outputs.tagVersion }}
         working-directory: .deployment/base
       - uses: actions-hub/kubectl@v1.32.2
