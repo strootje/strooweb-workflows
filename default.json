@@ -47,7 +47,6 @@
       "customType": "regex",
       "fileMatch": ["deno\\.jsonc?"],
       "datasourceTemplate": "deno",
-      "registryUrlTemplate": "https://jsr.io/",
       "matchStrings": [
         "jsr:(?<packageName>.+)@[\\^~](?<currentValue>(?:0|[1-9]\\d*).(?:0|[1-9]\\d*).(?:0|[1-9]\\d*))"
       ]
@@ -57,7 +56,6 @@
       "customType": "regex",
       "fileMatch": ["deno\\.jsonc?"],
       "datasourceTemplate": "deno",
-      "registryUrlTemplate": "https://npm.jsr.io/",
       "matchStrings": [
         "npm:(?<packageName>.+)@[\\^~](?<currentValue>(?:0|[1-9]\\d*).(?:0|[1-9]\\d*).(?:0|[1-9]\\d*))"
       ]
