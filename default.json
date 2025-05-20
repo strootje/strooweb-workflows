@@ -41,6 +41,26 @@
       "matchStrings": [
         "kind:\\s*HelmChart\\n[\\s\\w:-]*chart:\\s+(?<depName>.+)\\n[\\s\\w:-]*\\s+(?<currentValue>v?[0-9.]+)\\n[\\s\\w:-]*\\s+(?<registryUrl>https://.+)\\n"
       ]
+    },
+
+    {
+      "customType": "regex",
+      "fileMatch": ["deno\\.jsonc?"],
+      "datasourceTemplate": "deno",
+      "registryUrlTemplate": "https://jsr.io/",
+      "matchStrings": [
+        "jsr:(?<packageName>.+)@[\\^~](?<currentValue>(?:0|[1-9]\\d*).(?:0|[1-9]\\d*).(?:0|[1-9]\\d*))"
+      ]
+    },
+
+    {
+      "customType": "regex",
+      "fileMatch": ["deno\\.jsonc?"],
+      "datasourceTemplate": "deno",
+      "registryUrlTemplate": "https://npm.jsr.io/",
+      "matchStrings": [
+        "npm:(?<packageName>.+)@[\\^~](?<currentValue>(?:0|[1-9]\\d*).(?:0|[1-9]\\d*).(?:0|[1-9]\\d*))"
+      ]
     }
   ]
 }
