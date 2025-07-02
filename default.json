@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "github>Omochice/renovate-config/deno.json",
+    "github>Omochice/renovate-config:deno",
     ":semanticCommits"
   ],
 
