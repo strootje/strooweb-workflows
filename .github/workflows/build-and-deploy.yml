@@ -26,13 +26,13 @@ jobs:
     steps:
       - uses: actions/checkout@v5.0.0
       - uses: docker/setup-buildx-action@v3.11.1
-      - uses: docker/login-action@v3.4.0
+      - uses: docker/login-action@v3.5.0
         if: github.event_name != 'pull_request'
         with:
           registry: ${{ inputs.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: docker/metadata-action@v5.7.0
+      - uses: docker/metadata-action@v5.8.0
         with:
           images: "${{ env.IMAGE_REG }}"
           tags: |
@@ -60,7 +60,7 @@ jobs:
       - run: kustomize edit set image ${{ env.IMAGE_REG }}=${{ env.IMAGE_REG }}:${{ needs.build.outputs.tagVersion }}
         name: Kustomize image tag=${{ needs.build.outputs.tagVersion }}
         working-directory: .deployment/base
-      - uses: actions-hub/kubectl@v1.33.3
+      - uses: actions-hub/kubectl@v1.33.4
         name: Deploy (DRY-RUN)
         env:
           NAMESPACE: ${{ inputs.KUBE_NAMESPACE }}
@@ -69,7 +69,7 @@ jobs:
           KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
         with:
           args: -n ${{ env.NAMESPACE }} apply --dry-run="server" -k .deployment/overlays/prd
-      - uses: actions-hub/kubectl@v1.33.3
+      - uses: actions-hub/kubectl@v1.33.4
         if: github.event_name != 'pull_request'
         name: Deploy (APPLY)
         env:
