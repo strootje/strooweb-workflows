@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6.0.0
+      - uses: actions/checkout@v6.0.1
       - uses: actions-hub/kubectl@v1.34.2
         name: Deploy (DRY-RUN)
         env:
