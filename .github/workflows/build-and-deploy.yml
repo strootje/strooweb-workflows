@@ -60,7 +60,7 @@ jobs:
       - run: kustomize edit set image ${{ env.IMAGE_REG }}=${{ env.IMAGE_REG }}:${{ needs.build.outputs.tagVersion }}
         name: Kustomize image tag=${{ needs.build.outputs.tagVersion }}
         working-directory: .deployment/base
-      - uses: actions-hub/kubectl@v1.34.2
+      - uses: actions-hub/kubectl@v1.34.3
         name: Deploy (DRY-RUN)
         env:
           NAMESPACE: ${{ inputs.KUBE_NAMESPACE }}
@@ -69,7 +69,7 @@ jobs:
           KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
         with:
           args: -n ${{ env.NAMESPACE }} apply --dry-run="server" -k .deployment/overlays/prd
-      - uses: actions-hub/kubectl@v1.34.2
+      - uses: actions-hub/kubectl@v1.34.3
         if: github.event_name != 'pull_request'
         name: Deploy (APPLY)
         env:
