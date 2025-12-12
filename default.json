@@ -8,7 +8,10 @@
   "packageRules": [
     {
       "description": "Disallow Major update to clickhouse and postgres",
-      "matchPackageNames": ["docker.io/clickhouse/clickhouse-server", "docker.io/postgres"],
+      "matchPackageNames": [
+        "docker.io/clickhouse/clickhouse-server",
+        "docker.io/postgres"
+      ],
       "matchUpdateTypes": ["major"],
       "enabled": false
     },
@@ -28,6 +31,11 @@
       "groupName": "packages/solidjs",
       "description": "Group all solid packages into a single PR",
       "matchPackageNames": ["@solid-**", "@solidjs/**", "solid-**"]
+    },
+    {
+      "groupName": "packages/tanstack",
+      "description": "Group all tanstack packages into a single PR",
+      "matchPackageNames": ["@tanstack/**"]
     },
     {
       "groupName": "packages/unocss",
