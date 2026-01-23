@@ -1,6 +1,7 @@
 on:
   workflow_call:
     inputs:
+      PLATFORMS: { required: false, type: string, default: 'linux/amd64,linux/arm64' }
       REGISTRY: { required: false, type: string, default: ghcr.io }
       IMAGE_NAME: { required: true, type: string }
 
@@ -41,7 +42,7 @@ jobs:
 
       - uses: docker/build-push-action@v6.18.0
         with:
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ inputs.PLATFORMS }}
           labels: ${{ steps.meta.outputs.labels }}
           push: ${{ github.event_name != 'pull_request' }}
           annotations: ${{ steps.meta.outputs.annotations }}
