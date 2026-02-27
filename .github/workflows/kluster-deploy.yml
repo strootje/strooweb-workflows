@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: actions-hub/kubectl@v1.35.1
+      - uses: actions-hub/kubectl@v1.35.2
         name: Deploy (DRY-RUN)
         env:
           NAMESPACE: ${{ inputs.KUBE_NAMESPACE }}
@@ -25,7 +25,7 @@ jobs:
           KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
         with:
           args: -n ${{ env.NAMESPACE }} apply --dry-run="server" -k ${{ env.FOLDER }}
-      - uses: actions-hub/kubectl@v1.35.1
+      - uses: actions-hub/kubectl@v1.35.2
         if: github.event_name != 'pull_request'
         name: Deploy (APPLY)
         env:
