@@ -5,6 +5,8 @@
     ":semanticCommits"
   ],
 
+  "platformAutomerge": true,
+
   "packageRules": [
     {
       "description": "Disallow Major update to clickhouse and postgres",
@@ -19,7 +21,9 @@
     {
       "groupName": "github/workflows",
       "description": "Group all github actions into a single PR",
-      "matchManagers": ["github-actions"]
+      "matchManagers": ["github-actions"],
+      "automergeType": "pr",
+      "automerge": true
     },
 
     {
@@ -40,7 +44,9 @@
     {
       "groupName": "packages/unocss",
       "description": "Group all unocss packages into a single PR",
-      "matchPackageNames": ["@iconify-json/**", "@unocss/**", "unocss**"]
+      "matchPackageNames": ["@iconify-json/**", "@unocss/**", "unocss**"],
+      "automergeType": "pr",
+      "automerge": true
     }
   ],
 
