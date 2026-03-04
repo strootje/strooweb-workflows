@@ -27,6 +27,26 @@
     },
 
     {
+      "groupName": "helm/kube-system",
+      "description": "Group all Helm charts in kube-system namespace",
+      "matchManagers": ["custom.regex"],
+      "matchFileNames": ["**/kube-system/**"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automergeType": "pr",
+      "automerge": false
+    },
+
+    {
+      "groupName": "helm/kube-system",
+      "description": "Group all Helm charts in kube-system namespace",
+      "matchManagers": ["custom.regex"],
+      "matchFileNames": ["**/strooware-system/**"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automergeType": "pr",
+      "automerge": false
+    },
+
+    {
       "groupName": "packages/maplibre",
       "description": "Group all maplibre packages into a single PR",
       "matchPackageNames": ["map*-gl"]
