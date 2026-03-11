@@ -31,7 +31,7 @@
     {
       "groupName": "helm/kube-system",
       "description": "Group all Helm charts in kube-system namespace",
-      "matchManagers": ["custom.regex"],
+      "matchManagers": ["custom.regex", "kustomize"],
       "matchFileNames": ["**/kube-system/**"],
       "matchUpdateTypes": ["minor", "patch"],
       "automergeType": "pr",
@@ -41,7 +41,7 @@
     {
       "groupName": "helm/strooware-system",
       "description": "Group all Helm charts in strooware-system namespace",
-      "matchManagers": ["custom.regex"],
+      "matchManagers": ["custom.regex", "kustomize"],
       "matchFileNames": ["**/strooware-system/**"],
       "matchUpdateTypes": ["minor", "patch"],
       "automergeType": "pr",
