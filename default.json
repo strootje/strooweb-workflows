@@ -42,7 +42,27 @@
       "matchFileNames": ["**/strooware-system/**"],
       "matchUpdateTypes": ["minor", "patch"],
       "automergeType": "pr",
-      "automerge": false
+      "automerge": true
+    },
+
+    {
+      "groupName": "helm/strooweb-public",
+      "description": "Group all Helm charts in strooweb-public namespace",
+      "matchManagers": ["custom.regex", "kustomize"],
+      "matchFileNames": ["**/strooweb-public/**"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automergeType": "pr",
+      "automerge": true
+    },
+
+    {
+      "groupName": "helm/strooweb-system",
+      "description": "Group all Helm charts in strooweb-system namespace",
+      "matchManagers": ["custom.regex", "kustomize"],
+      "matchFileNames": ["**/strooweb-system/**"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automergeType": "pr",
+      "automerge": true
     },
 
     {
