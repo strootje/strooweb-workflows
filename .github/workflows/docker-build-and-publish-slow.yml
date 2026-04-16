@@ -40,7 +40,7 @@ jobs:
             type=sha
         id: meta
 
-      - uses: docker/build-push-action@v7.0.0
+      - uses: docker/build-push-action@v7.1.0
         with:
           platforms: ${{ inputs.PLATFORMS }}
           labels: ${{ steps.meta.outputs.labels }}
